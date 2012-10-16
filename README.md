@@ -9,10 +9,6 @@ TODO
 Now
 ===
 
-Add a players property to Model that is an array of two players named 'X' and 'O'.
-
-Add a currentPlayer property to Model representing the player whose move it is. Initialize it to the first player from the players array for now.
-
 In the view change the update method to tell current player to move. Check that it works.
 
 Add a restart method to the model that sets the current player to be a random player.
