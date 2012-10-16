@@ -9,8 +9,6 @@ TODO
 Now
 ===
 
-In the view change the update method to tell current player to move. Check that it works.
-
 Add a restart method to the model that sets the current player to be a random player.
 
 In the ready function in the controller have it call restart before update. In Model initialize currentPlayer to null. Check that the program now starts with a random player.

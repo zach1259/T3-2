@@ -4,6 +4,7 @@ T3.Controller = function() {
 	var model = new T3.Model();
 	var view = new T3.View(model);
 
+	model.restart();
 	view.update();
 };
 
