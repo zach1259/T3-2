@@ -9,10 +9,6 @@ TODO
 Now
 ===
 
-Add a restart method to the model that sets the current player to be a random player.
-
-In the ready function in the controller have it call restart before update. In Model initialize currentPlayer to null. Check that the program now starts with a random player.
-
 In the ready function in the controller have it restart the model and update the view when restart is clicked. You'll need to look at jQuery's docs to figure out how to do this. Check that clicking restart changes the current player.
 
 In the model create a board property. In restart initialize each square to be random player for now. In View's update method write the code to draw the board. Check that this works.
