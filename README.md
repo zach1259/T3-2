@@ -9,8 +9,6 @@ TODO
 Now
 ===
 
-In the model create a board property. In restart initialize each square to be random player for now. In View's update method write the code to draw the board. Check that this works.
-
 In the model create a move method that given a cell x, y sets that cell to be owned by the current player and sets currentPlayer to be the other player.
 
 In the view's click method have it call Model's move method with the correct cell and redraw itself. Check that you can click to take squares.

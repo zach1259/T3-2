@@ -32,6 +32,8 @@ T3.View.prototype._draw = function() {
 
 	this._drawBoard();
 
+	this._drawShapes();
+	
 	this.ctx.restore();
 };
 
@@ -61,6 +63,38 @@ T3.View.prototype._drawColumnLines = function() {
 		this.ctx.moveTo(px + nudge, 0);
 		this.ctx.lineTo(px + nudge, 1);
 	}
+};
+
+// Determines the propper shape to draw for each square
+T3.View.prototype._drawShapes = function() {
+	var size = this.model.size;
+	for (var x = 0; x < size; x++) {
+		for (var y = 0; y < size; y++) {
+			var newX = x / size;
+			var newY = y / size;
+			this.ctx.beginPath();
+			if (this.model.board[x][y].name === 'X') {
+				this._drawX(newX, newY);
+			} else if (this.model.board[x][y].name === 'O') {
+				this._drawO(newX, newY);
+			}
+			this._stroke(1 / 2, 'black');
+		}
+	}
+};
+
+T3.View.prototype._drawX = function(x, y) {
+	var indent = .9 / this.model.size
+	var indent2 = .1 / this.model.size
+	this.ctx.moveTo(x + indent2, y + indent2);
+	this.ctx.lineTo(x + indent, y + indent);
+	this.ctx.moveTo(x + indent, y + indent2);
+	this.ctx.lineTo(x + indent2, y + indent);
+};
+
+T3.View.prototype._drawO = function(x, y) {
+	var size = this.model.size;
+	this.ctx.arc(x + .5 / size, y + .5 / size, .45 / size, 0, 2 * Math.PI);
 };
 
 T3.View.prototype._stroke = function(pixelWeight, color) {
