@@ -17,6 +17,18 @@ T3.Model.prototype.restart = function() {
 	this.currentPlayer = this.players[Math.floor(Math.random() * 2)];
 };
 
+T3.Model.prototype.move = function(x, y) {
+	this.board[x][y] = this.currentPlayer;
+	this.board[x][y].name = this.currentPlayer.name;
+
+	//I need to think of a better way to do this
+	if (this.currentPlayer.name === 'X') {
+		this.currentPlayer.name = 'O';
+	} else if (this.currentPlayer.name === 'O') {
+		this.currentPlayer.name = 'X';
+	}
+};
+
 T3.Player = function(name) {
 	this.name = name;
 };

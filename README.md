@@ -9,8 +9,6 @@ TODO
 Now
 ===
 
-In the model create a move method that given a cell x, y sets that cell to be owned by the current player and sets currentPlayer to be the other player.
-
 In the view's click method have it call Model's move method with the correct cell and redraw itself. Check that you can click to take squares.
 
 Now change Model.restart to initialize all squares to null. Check that your program still works and now the board starts out empty and you can take squares one by one.

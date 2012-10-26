@@ -18,7 +18,12 @@ T3.View = function(model) {
 T3.View.prototype._mouseClick = function(event) {
 	var pixelX = event.pageX - this.canvas.offset().left;
 	var pixelY = event.pageY - this.canvas.offset().top;
+	
+	var x = Math.floor(pixelX / 100);
+	var y = Math.floor(pixelY / 100);
 
+	this.model.move(x, y);
+	this.update();
 };
 
 T3.View.prototype.update = function() {
@@ -73,6 +78,7 @@ T3.View.prototype._drawShapes = function() {
 			var newX = x / size;
 			var newY = y / size;
 			this.ctx.beginPath();
+			//console.log(this.model.board[x][y].name);
 			if (this.model.board[x][y].name === 'X') {
 				this._drawX(newX, newY);
 			} else if (this.model.board[x][y].name === 'O') {
