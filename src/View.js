@@ -29,6 +29,52 @@ T3.View.prototype._mouseClick = function(event) {
 T3.View.prototype.update = function() {
 	$('#status').text(this.model.currentPlayer.name + "'s Turn");
 	this._draw();
+	this._getWinner();
+};
+
+T3.View.prototype._getWinner = function() {
+	var board = this.model.board;
+	this.winner = null;
+	var playerX = this.model.players[0];
+	var playerO = this.model.players[1];
+
+	if (board[0][0] === playerX && board[0][1] === playerX && board[0][2] === playerX //rows
+	 || board[1][0] === playerX && board[1][1] === playerX && board[1][2] === playerX
+	 || board[2][0] === playerX && board[2][1] === playerX && board[2][2] === playerX 
+	 || board[0][0] === playerX && board[1][0] === playerX && board[2][0] === playerX//columns
+	 || board[0][1] === playerX && board[1][1] === playerX && board[2][1] === playerX
+	 || board[0][2] === playerX && board[1][2] === playerX && board[2][2] === playerX
+	 || board[0][0] === playerX && board[1][1] === playerX && board[2][2] === playerX//diagonals
+	 || board[0][2] === playerX && board[1][1] === playerX && board[2][0] === playerX) {
+		this.winner = 'X';
+	} else if (board[0][0] === playerO && board [0][1] === playerO && board[0][2] === playerO //rows
+	 || board[1][0] === playerO && board[1][1] === playerO && board[1][2] === playerO 
+	 || board[2][0] === playerO && board[2][1] === playerO && board[2][2] === playerO
+	 || board[0][0] === playerO && board[1][0] === playerO && board[2][0] === playerO
+	 || board[0][1] === playerO && board[1][1] === playerO && board[2][1] === playerO //columns
+	 || board[0][2] === playerO && board[1][2] === playerO && board[2][2] === playerO
+	 || board[0][0] === playerO && board[1][1] === playerO && board[2][2] === playerO //diagonals
+	 || board[0][2] === playerO && board[1][1] === playerO && board[2][0] === playerO) {
+		this.winner = 'O'
+	} else {
+		// Checks for stalemate
+		outer:
+		for (var x = 0; x < this.model.size; x++) {
+			for (var y = 0; y < this.model.size; y++) {
+				if (board[x][y] === null) {
+					break outer;
+				} else if (x === 2 && y === 2) {
+					this.winner = 'stalemate';
+				}
+			}
+		}
+	}
+
+	if (this.winner === 'X' || this.winner === 'O') {
+		$('#status').text(this.winner + " Wins");
+	} else if (this.winner === 'stalemate') {
+		$('#status').text("Stalemate!");
+	}
 };
 
 T3.View.prototype._draw = function() {
@@ -77,14 +123,16 @@ T3.View.prototype._drawShapes = function() {
 		for (var y = 0; y < size; y++) {
 			var newX = x / size;
 			var newY = y / size;
-			this.ctx.beginPath();
-			//console.log(this.model.board[x][y].name);
-			if (this.model.board[x][y].name === 'X') {
-				this._drawX(newX, newY);
-			} else if (this.model.board[x][y].name === 'O') {
-				this._drawO(newX, newY);
+			
+			if (this.model.board[x][y] !== null) {
+				this.ctx.beginPath();
+				if (this.model.board[x][y].name === 'X') {
+					this._drawX(newX, newY);
+				} else if (this.model.board[x][y].name === 'O') {
+					this._drawO(newX, newY);
+				}
+				this._stroke(1 / 2, 'black');
 			}
-			this._stroke(1 / 2, 'black');
 		}
 	}
 };

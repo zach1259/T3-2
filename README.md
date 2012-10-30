@@ -9,19 +9,6 @@ TODO
 Now
 ===
 
-In the view's click method have it call Model's move method with the correct cell and redraw itself. Check that you can click to take squares.
-
-Now change Model.restart to initialize all squares to null. Check that your program still works and now the board starts out empty and you can take squares one by one.
-
-Make it impossible to take a square that is already taken. Check that this works.
-
-Add a getWinner method in the model. Have it return either the current winner or null if nobody has won yet. Have the view reflect the winner in the status line. Check that this works.
-
-Have the status read 'Statemate!' if nobody can move.
-
-Make it impossible to move once you have a winner. Check that this works. You should now have a wokring Tic-Tac-Toe implementation.
-
-
 Cleanup
 ===
 
